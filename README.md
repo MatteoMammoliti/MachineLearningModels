@@ -27,7 +27,3 @@ For every project included here, you will find:
 - **Environment:** Jupyter Notebooks / Python Scripts
 
 I am deeply committed to mastering the mathematical and practical foundations of Machine Learning. Every dataset presents a new puzzle, and I am passionate about refining my skills, questioning my assumptions, and learning how to extract actionable business value from raw numbers. I treat every error as a stepping stone and every visualization as an opportunity to ask better questions.
-
-## 📫 Let's Connect
-
-I am always open to constructive feedback, collaborations, or simply discussing data science topics!
