@@ -1,0 +1,11 @@
+[project]
+name = "machinelearningmodels"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jupyterlab>=4.5.4",
+    "matplotlib>=3.10.8",
+    "pandas>=3.0.0",
+]
