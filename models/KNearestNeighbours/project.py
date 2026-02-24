@@ -1,28 +1,27 @@
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import seaborn as sns
 from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
 
 # --- STEP 1: SCALING DATA
 pd.set_option("display.max_columns", None)
 
-df = pd.read_csv('./KNN_Project_Data.csv')
+df = pd.read_csv("./KNN_Project_Data.csv")
 
 print(df.head())
-
 
 
 scaler = StandardScaler()
 
 # Let's fit the scaler model
 # We remove the 'TARGET CLASS' from the dataset as it shouldn't be scaled
-scaler.fit(df.drop('TARGET CLASS', axis=1))
+scaler.fit(df.drop("TARGET CLASS", axis=1))
 
-scaled_features = scaler.transform(df.drop('TARGET CLASS', axis=1))
+scaled_features = scaler.transform(df.drop("TARGET CLASS", axis=1))
 
 df_scaled = pd.DataFrame(scaled_features, columns=df.columns[:-1])
 
@@ -30,7 +29,7 @@ print(df_scaled.head())
 
 # --- STEP 2: TRAIN/SPLIT
 X = df_scaled
-y = df['TARGET CLASS']
+y = df["TARGET CLASS"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
@@ -43,7 +42,15 @@ for i in range(1, 40):
     pred = knn.predict(X_test)
     error.append(np.mean(pred != y_test))
 
-plot = plt.plot(range(1, 40), error, color='red', linestyle='dashed', marker='o', markerfacecolor='blue', markersize=10)
+plot = plt.plot(
+    range(1, 40),
+    error,
+    color="red",
+    linestyle="dashed",
+    marker="o",
+    markerfacecolor="blue",
+    markersize=10,
+)
 plt.show()
 
 """

@@ -24,9 +24,9 @@ Here are what the columns represent:
 * pub.rec: The borrower's number of derogatory public records (bankruptcy filings, tax liens, or judgments).
 """
 
+import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
@@ -34,7 +34,7 @@ from sklearn.tree import DecisionTreeClassifier
 # --- STEP 1: DATA ANALYSIS
 pd.set_option("display.max_columns", None)
 
-df = pd.read_csv('./loan_data.csv')
+df = pd.read_csv("./loan_data.csv")
 
 print(df.head())
 
@@ -44,8 +44,12 @@ those who have a high fico value respect, at the same moment,
 the website financial policies. 
 So the tree may understand that these users likely give back money. 
 """
-df[df['credit.policy']==1]['fico'].hist(bins=30, alpha=0.5, color='red', label='Credit Policy 1')
-histplot_1 = df[df['credit.policy']==0]['fico'].hist(bins=30, alpha=0.5, color='blue', label='Credit Policy 1')
+df[df["credit.policy"] == 1]["fico"].hist(
+    bins=30, alpha=0.5, color="red", label="Credit Policy 1"
+)
+histplot_1 = df[df["credit.policy"] == 0]["fico"].hist(
+    bins=30, alpha=0.5, color="blue", label="Credit Policy 1"
+)
 plt.legend()
 plt.show()
 
@@ -54,20 +58,24 @@ This plot confirms what said above:
 those who have a positive credit policy, 
 almost always give back money
 """
-df[df['credit.policy']==1]['not.fully.paid'].hist(bins=30, alpha=0.5, color='red', label='Credit Policy 1')
-histplot_2 = df[df['credit.policy']==0]['not.fully.paid'].hist(bins=30, alpha=0.5, color='blue', label='Credit Policy 0')
+df[df["credit.policy"] == 1]["not.fully.paid"].hist(
+    bins=30, alpha=0.5, color="red", label="Credit Policy 1"
+)
+histplot_2 = df[df["credit.policy"] == 0]["not.fully.paid"].hist(
+    bins=30, alpha=0.5, color="blue", label="Credit Policy 0"
+)
 plt.legend()
 plt.show()
 
-countplot = sns.countplot(x='purpose',hue='not.fully.paid',data=df,palette='Set1')
+countplot = sns.countplot(x="purpose", hue="not.fully.paid", data=df, palette="Set1")
 plt.show()
 
 # --- STEP 2: TRAIN/TEST SPLIT AND PREDICTION WITH A SINGLE TREE
 
-df_final = pd.get_dummies(df, columns=['purpose'], drop_first=True)
+df_final = pd.get_dummies(df, columns=["purpose"], drop_first=True)
 
-X = df_final.drop('not.fully.paid',axis=1)
-y = df['not.fully.paid']
+X = df_final.drop("not.fully.paid", axis=1)
+y = df["not.fully.paid"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 

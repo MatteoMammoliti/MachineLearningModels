@@ -16,12 +16,12 @@ This data set contains the following features:
 * 'Clicked on Ad': 0 or 1 indicated clicking on Ad
 """
 
+import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
 
 # --- STEP 1: DATA ANALYSIS
 pd.set_option("display.max_columns", None)
